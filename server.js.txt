@@ -1,0 +1,37 @@
+const express = require('express');
+const app = express();
+const port = 3000;
+var seed = 12;
+
+var player = '["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]';
+var player1 = '["0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"]';
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+app.get('/seed', (req, res) => {
+  res.send(seed+"");
+});
+app.get('/setseed', (req, res) => {
+  seed = req.query.key;
+  res.send(seed+"");
+});
+app.get('/set', (req, res) => {
+  player = Array.from(req.query.key);
+  res.send(player.length+"");
+});
+app.get('/get', (req, res) => {
+  res.send(player);
+});
+
+app.get('/set1', (req, res) => {
+  player1 = Array.from(req.query.key);
+  res.send(player1.length+"");
+});
+app.get('/get1', (req, res) => {
+  res.send(player1);
+});
+
+app.listen(port, () => {
+  console.log('Example app listening at http://localhost:'+ port)
+});
